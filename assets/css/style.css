@@ -12,3 +12,8 @@ body {
 #instruction-panel {
     background-color: yellow;
 }
+
+#megawatt-output {
+    background-color: rgb(24, 15, 0);
+    color: tomato;
+}
