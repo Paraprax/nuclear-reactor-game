@@ -1,6 +1,14 @@
 body {
-    background-color: rgb(0, 19, 4);
-    color: chartreuse;
+    background-color: rgb(122, 138, 145);
     font-family: 'Courier New', Courier, monospace;
     font-weight: bolder;
+}
+
+#header {
+    color: red;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#instruction-panel {
+    background-color: yellow;
 }
