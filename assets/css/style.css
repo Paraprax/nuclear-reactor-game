@@ -26,3 +26,7 @@ body {
     border-style: groove;
     border-width: 6px;
 }
+
+.reactor-button {
+    font-family: 'kremlin minister black';
+}

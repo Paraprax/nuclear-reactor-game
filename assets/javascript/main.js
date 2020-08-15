@@ -2,7 +2,6 @@ $(document).ready(function() {
     console.log('Reactor-V Status: Online');
 
     /*goals:
-        - add each button value to the total megawatt output when clicked
         - if the megawatt output hits the target precisely, award the user an official commendation
         - if the megawatt output exceeds the target, give the user an official reprimandation
         - reset all reactor values to new numbers when the user succeeds or fails at running the reactor
@@ -21,16 +20,21 @@ $(document).ready(function() {
     //reset all the values to original state for new round:
     const reactorReset = () => {
         megawattOutput = 0;
-        $('#megawatt-output').text(megawattOutput);;
+        gagueUpdater();
         targetGoalGenerator();
         buttonAssignments();
     };
+
+    const gagueUpdater = () => {
+        $('#megawatt-target').text(megawattTarget);
+        $('#megawatt-output').text(megawattOutput);
+    }
 
     //generate the target number for the user to try and hit, && update the div to show it:
     const targetGoalGenerator = () => {
         //set the target number anywhere between 1000 && 3300, rounded to the nearest 10:
         megawattTarget = Math.round((Math.floor(Math.random() * 2300) + 1000)/10) * 10;
-        $('#megawatt-target').text(megawattTarget);
+        gagueUpdater();
     }
 
     const buttonAssignments = () => {
@@ -50,7 +54,7 @@ $(document).ready(function() {
     $('.reactor-button').on('click', function() {
         megawattOutput += parseInt($(this).attr('val'));
         console.log(megawattOutput);
-        $('#megawatt-output').text(megawattOutput);
+        gagueUpdater();
     });
 
 
