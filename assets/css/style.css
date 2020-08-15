@@ -13,7 +13,12 @@ body {
     background-color: yellow;
 }
 
-#megawatt-output {
+#megawatt-panel {
     background-color: rgb(24, 15, 0);
     color: tomato;
+}
+
+.card {
+    border-style: groove;
+    border-width: 6px;
 }
