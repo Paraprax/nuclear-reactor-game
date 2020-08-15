@@ -12,6 +12,7 @@ $(document).ready(function() {
 
     //initial vars:
     let megawattTarget = 0;
+    let megawattOutput = 0;
     let buttonDivIDs = ["#button-A", "#button-B", "#button-C", "#button-D"];
     let buttonValue = 0;
     let successes = 0;
@@ -21,6 +22,8 @@ $(document).ready(function() {
 
     //reset all the numbers to original state for new round:
     const reactorReset = () => {
+        megawattOutput = 0;
+        $('#megawatt-output').text(megawattOutput);;
         targetGoalGenerator();
         buttonAssignments();
     };
