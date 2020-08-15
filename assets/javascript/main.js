@@ -2,8 +2,6 @@ $(document).ready(function() {
     console.log('Reactor-V Status: Online');
 
     /*goals:
-        - generate a new megawatt output goal each round && update it to the megawatt target div
-        - generate new megawatt values for each of the four buttons each round
         - add each button value to the total megawatt output when clicked
         - if the megawatt output hits the target precisely, award the user an official commendation
         - if the megawatt output exceeds the target, give the user an official reprimandation
@@ -20,7 +18,7 @@ $(document).ready(function() {
 
     //functions:
 
-    //reset all the numbers to original state for new round:
+    //reset all the values to original state for new round:
     const reactorReset = () => {
         megawattOutput = 0;
         $('#megawatt-output').text(megawattOutput);;
@@ -35,10 +33,6 @@ $(document).ready(function() {
         $('#megawatt-target').text(megawattTarget);
     }
 
-    $('#on-button').on('click', function() {
-        reactorReset();
-    });
-
     const buttonAssignments = () => {
         //set four random numbers between 0 && 500, rounded to the nearest 10:
         for (var i = 0; i < 4; i++) {
@@ -46,8 +40,18 @@ $(document).ready(function() {
             //assign the number as the 'val' attribute of the four DOM buttons:
             $(buttonDivIDs[i]).attr('val', buttonValue);
         }
-    
     }
+
+    //button functions:
+    $('#on-button').on('click', function() {
+        reactorReset();
+    });
+
+    $('.reactor-button').on('click', function() {
+        megawattOutput += parseInt($(this).attr('val'));
+        console.log(megawattOutput);
+        $('#megawatt-output').text(megawattOutput);
+    });
 
 
 // end of docready function
