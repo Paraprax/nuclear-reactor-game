@@ -12,26 +12,37 @@ $(document).ready(function() {
 
     //initial vars:
     let megawattTarget = 0;
+    let buttonValue = 0;
+    let buttonValArray = [];
     let successes = 0;
     let failures = 0;
 
     //functions:
 
+    //reset all the numbers to original state for new round:
+    const reactorReset = () => {
+        targetGoalGenerator();
+        buttonAssignments();
+    };
+
     //generate the target number for the user to try and hit, && update the div to show it:
     const targetGoalGenerator = () => {
         //set the target number anywhere between 1000 && 3300, rounded to the nearest 10:
-        megawattTarget = Math.floor(Math.random() * 2300) + 1000;
-        megawattTarget = Math.round(megawattTarget/10) * 10;
-        
+        megawattTarget = Math.round((Math.floor(Math.random() * 2300) + 1000)/10) * 10;
         $('#megawatt-target').text(megawattTarget);
     }
 
     $('#on-button').on('click', function() {
-        targetGoalGenerator();
+        reactorReset();
     });
 
     const buttonAssignments = () => {
         //set four random numbers between 0 && 500, rounded to the nearest 10:
+        for (var i = 0; i < 4; i++) {
+            buttonValue = Math.round((Math.floor(Math.random() * 500))/10) * 10;
+            buttonValArray.push(buttonValue);
+            console.log(buttonValArray);
+        }
     }
 
 
