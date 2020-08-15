@@ -2,9 +2,7 @@ $(document).ready(function() {
     console.log('Reactor-V Status: Online');
 
     /*goals:
-        - if the megawatt output hits the target precisely, award the user an official commendation
-        - if the megawatt output exceeds the target, give the user an official reprimandation
-        - reset all reactor values to new numbers when the user succeeds or fails at running the reactor
+        - game logic goals all met; update CSS
     */
 
     //initial vars:
@@ -26,9 +24,12 @@ $(document).ready(function() {
         buttonAssignments();
     };
 
+    //update all the numbers the user sees:
     const gagueUpdater = () => {
         $('#megawatt-target').text(megawattTarget);
         $('#megawatt-output').text(megawattOutput);
+        $('#commendations').text(successes);
+        $('#reprimandations').text(failures);
     }
 
     //generate the target number for the user to try and hit, && update the div to show it:
@@ -51,7 +52,14 @@ $(document).ready(function() {
 
     //'ON' button starts game conditions:
     $('#on-button').on('click', function() {
-        reactorRunning = true;
+        if (reactorRunning == false) {
+            reactorRunning = true;
+            reactorReset();
+        }
+    });
+
+    //'RESET' button resets all the values
+    $('#reset-button').on('click', function() {
         reactorReset();
     });
 
@@ -59,16 +67,19 @@ $(document).ready(function() {
     $('.reactor-button').on('click', function() {
         if (reactorRunning == true) {
             megawattOutput += parseInt($(this).attr('val')); //convert val str from button clicked into integer && add to output val
-            gagueUpdater();
-
+            
             //after every click, check if the megawatt output has fallen short of, met, or exceeded the target:
             if (megawattOutput < megawattTarget) {
                 console.log('needs more power');
             } else if (megawattOutput == megawattTarget) {
+                successes++;
                 alert('A bright future!');
             } else if (megawattOutput > megawattTarget) {
+                failures++;
                 alert('CORE TEMPERATURE OVERLOAD. IMMEDIATE SHUTDOWN REQUIRED');
             }
+
+            gagueUpdater();
 
         } else {
             megawattOutput = 0;
