@@ -12,6 +12,7 @@ $(document).ready(function() {
 
     //initial vars:
     let megawattTarget = 0;
+    let buttonDivIDs = ["#button-A", "#button-B", "#button-C", "#button-D"];
     let buttonValue = 0;
     let buttonValArray = [];
     let successes = 0;
@@ -42,6 +43,11 @@ $(document).ready(function() {
             buttonValue = Math.round((Math.floor(Math.random() * 500))/10) * 10;
             buttonValArray.push(buttonValue);
             console.log(buttonValArray);
+        }
+        
+        //assign the array of values as the 'val' attribute of the four DOM buttons:
+        for (var i = 0; i < buttonValArray.length; i++) {
+            $(buttonDivIDs[i]).attr('val', buttonValArray[i]);
         }
     }
 
