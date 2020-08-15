@@ -8,6 +8,7 @@ $(document).ready(function() {
     */
 
     //initial vars:
+    let reactorRunning = false;
     let megawattTarget = 0;
     let megawattOutput = 0;
     let buttonDivIDs = ["#button-A", "#button-B", "#button-C", "#button-D"];
@@ -47,14 +48,32 @@ $(document).ready(function() {
     }
 
     //button functions:
+
+    //'ON' button starts game conditions:
     $('#on-button').on('click', function() {
+        reactorRunning = true;
         reactorReset();
     });
 
+    //the four buttons for controlling the megawatt output:
     $('.reactor-button').on('click', function() {
-        megawattOutput += parseInt($(this).attr('val'));
-        console.log(megawattOutput);
-        gagueUpdater();
+        if (reactorRunning == true) {
+            megawattOutput += parseInt($(this).attr('val')); //convert val str from button clicked into integer && add to output val
+            gagueUpdater();
+
+            //after every click, check if the megawatt output has fallen short of, met, or exceeded the target:
+            if (megawattOutput < megawattTarget) {
+                console.log('needs more power');
+            } else if (megawattOutput == megawattTarget) {
+                alert('A bright future!');
+            } else if (megawattOutput > megawattTarget) {
+                alert('CORE TEMPERATURE OVERLOAD. IMMEDIATE SHUTDOWN REQUIRED');
+            }
+
+        } else {
+            megawattOutput = 0;
+            alert('turn reactor on first');
+        } 
     });
 
 
