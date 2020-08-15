@@ -17,15 +17,16 @@ $(document).ready(function() {
 
     //functions:
 
-    //generate the target number for the user to try and hit:
+    //generate the target number for the user to try and hit, && update the div to show it:
     const targetGoalGenerator = () => {
         //set the target number anywhere between 1000 && 3300, rounded to the nearest 10:
         megawattTarget = Math.floor(Math.random() * 2300) + 1000;
         megawattTarget = Math.round(megawattTarget/10) * 10;
-        return megawattTarget;
+        
+        $('#megawatt-target').text(megawattTarget);
     }
 
-    $('#button-A').on('click', function() {
+    $('#on-button').on('click', function() {
         targetGoalGenerator();
     });
 
